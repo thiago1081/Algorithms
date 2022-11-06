@@ -1,4 +1,4 @@
-from algorithms.bst import Tree
+from algorithms.bst import Tree, Node
 
 def test_insertion_root():
     tree = Tree()
@@ -68,3 +68,22 @@ def test_find():
     
     assert find_1 == True
     assert find_2 == False
+
+def test_breath_traversal():
+    n1 = Node(4)
+    n2 = Node(9)
+    n3 = Node(8)
+    n4 = Node(5)
+    n5 = Node(10)
+    n6 = Node(4)
+    tree = Tree()
+    tree.root = n1
+    n1.leftChild = n2
+    n1.rightChild = n3
+    n2.leftChild = n4
+    n4.rightChild = n5
+    n3.leftChild = n6
+    nodes_visited = tree.breadth_first_traversal(tree.root)
+    assert nodes_visited == [4, 9, 8, 5, 4, 10]
+
+

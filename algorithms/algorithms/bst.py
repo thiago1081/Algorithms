@@ -1,3 +1,5 @@
+from collections import deque
+
 class Node(object):
     def __init__(self, data):
         self.data = data
@@ -112,8 +114,23 @@ class Node(object):
                 self.leftChild.postorder()
             if self.rightChild:
                 self.rightChild.postorder()
-            print(str(self.data), end = ' ')        
-class Tree(object):
+            print(str(self.data), end = ' ')   
+    def breadth_first_traversal(self, root):
+        if root is None:
+            return 
+        q = deque()
+        q.append(root)
+        visited = []
+        while len(q) != 0:
+            current = q.popleft()
+            #print(current.data, end=" ")
+            visited.append(current.data)
+            if current.leftChild is not None:
+                q.append(current.leftChild)
+            if current.rightChild is not None:
+                q.append(current.rightChild)     
+        return visited
+class Tree(Node):
     def __init__(self):
         self.root = None
 
